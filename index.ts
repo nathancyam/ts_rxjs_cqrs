@@ -170,6 +170,7 @@ class CommandBus {
 
   handle(c: Command): Promise<any> {
     if (this.test.supports(c)) {
+      // From these events, we should store them somewhere as the event log _before_ we run the handlers
       const events = this.test.handle(c);
       return this.eventBus.handle(events);
     }
